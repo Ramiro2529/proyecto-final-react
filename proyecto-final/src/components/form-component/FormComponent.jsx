@@ -3,12 +3,12 @@ import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import PanelControl from "../panel-component/PanelComponent";
 const FormComponent = ({ listaInvitados, setListaDeInvitados }) => {
-  let invitado = {
+  const [invitado, setInvitado] = useState({
     asistencia: "",
     nombre: "",
     correo: "",
     edad: 0,
-  };
+  });
 
   const [flag, setflag] = useState(false);
 
@@ -17,10 +17,11 @@ const FormComponent = ({ listaInvitados, setListaDeInvitados }) => {
   };
   const onChange = (e) => {
     e.preventDefault();
-
-    invitado.nombre = document.getElementById("nombre").value;
-    invitado.correo = document.getElementById("correo").value;
-    invitado.edad = document.getElementById("edad").value;
+    setInvitado({
+      ...invitado,
+      asistencia: flag,
+      [e.target.name]: e.target.value,
+    });
     console.log(invitado);
   };
 
@@ -29,7 +30,6 @@ const FormComponent = ({ listaInvitados, setListaDeInvitados }) => {
     if (invitado.edad < 18) {
       return;
     }
-    invitado.asistencia = !flag;
     setListaDeInvitados([...listaInvitados, invitado]);
     console.log(listaInvitados);
   };
@@ -41,7 +41,6 @@ const FormComponent = ({ listaInvitados, setListaDeInvitados }) => {
           type="text"
           placeholder="Nombre"
           name="nombre"
-          id="nombre"
         />
       </FloatingLabel>
       <FloatingLabel controlId="floatingCorreo" label="Correo" className="mb-3">
@@ -50,11 +49,10 @@ const FormComponent = ({ listaInvitados, setListaDeInvitados }) => {
           type="email"
           placeholder="name@example.com"
           name="correo"
-          id="correo"
         />
       </FloatingLabel>
       <FloatingLabel controlId="floatingEdad" label="Edad" className="mb-3">
-        <Form.Control onChange={onChange} type="number" id="edad" name="edad" />
+        <Form.Control onChange={onChange} type="number" name="edad" />
       </FloatingLabel>
       <button
         color="green"
