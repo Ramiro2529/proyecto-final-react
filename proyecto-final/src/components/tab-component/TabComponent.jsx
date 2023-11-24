@@ -14,16 +14,16 @@ const TabComponent = () => {
       id="uncontrolled-tab-example"
       className="mb-3"
     >
-      <Tab eventKey="invite" title="invite">
+      <Tab eventKey="invite" title="Inivitación">
       <InviteComponent></InviteComponent>
       </Tab>
-      <Tab eventKey="form" title="Form">
+      <Tab eventKey="form" title="Formulario de confirmación">
         <FormComponent
           listaInvitados={listaInvitados}
           setListaDeInvitados={setListaDeInvitados}
         ></FormComponent>
       </Tab>
-      <Tab eventKey="list" title="list">
+      <Tab eventKey="list" title="Lista de invitados">
         <ListComponent listaInvitados={listaInvitados}></ListComponent>
       </Tab>
     </Tabs>
