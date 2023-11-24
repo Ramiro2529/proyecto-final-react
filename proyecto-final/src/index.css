@@ -1,0 +1,17 @@
+
+
+body {
+    height: 100px;
+     background-image: linear-gradient(90deg, #A05C17, #FF7518, #FFFFA7);
+   }
+
+h1, span {
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: bold;
+    background: -webkit-linear-gradient(#301934, #8A0707, #DC143C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: colorCycle 1s linear infinite; /* Adjust the duration as needed */
+  }
