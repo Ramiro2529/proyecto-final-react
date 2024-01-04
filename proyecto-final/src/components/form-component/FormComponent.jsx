@@ -4,14 +4,17 @@ import { useState } from "react";
 import PanelControl from "../panel-component/PanelComponent";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
+import "./FormComponent.css";
 
 const FormComponent = ({ listaInvitados, setListaDeInvitados }) => {
   const [invitado, setInvitado] = useState({
     asistencia: "",
     nombre: "",
     correo: "",
-    edad: 0,
+    edad: "",
   });
+
+  const { nombre, correo, edad } = invitado;
 
   const [validacionSucces, setValidacionSucces] = useState(false);
 
@@ -25,7 +28,7 @@ const FormComponent = ({ listaInvitados, setListaDeInvitados }) => {
     if (!flag === true) {
       setInvitado({
         ...invitado,
-        asistencia: "Si va",
+        asistencia: "Asistirá",
       });
       setflag2(false);
     }
@@ -36,7 +39,7 @@ const FormComponent = ({ listaInvitados, setListaDeInvitados }) => {
     if (!flag2) {
       setInvitado({
         ...invitado,
-        asistencia: "No va",
+        asistencia: "No Asistirá",
       });
       setflag(false);
     }
@@ -48,7 +51,7 @@ const FormComponent = ({ listaInvitados, setListaDeInvitados }) => {
       [e.target.name]: e.target.value,
     });
     setvalidacionEdad(false);
-    setValidacionSucces(false)
+    setValidacionSucces(false);
     console.log(invitado);
   };
 
@@ -63,8 +66,8 @@ const FormComponent = ({ listaInvitados, setListaDeInvitados }) => {
     console.log(listaInvitados);
     setflag(false);
     setflag2(false);
-    setValidacionSucces(true)
-
+    setValidacionSucces(true);
+    setInvitado({ asistencia: "", nombre: "", correo: "", edad: 0 });
   };
   return (
     <PanelControl>
@@ -74,6 +77,7 @@ const FormComponent = ({ listaInvitados, setListaDeInvitados }) => {
           type="text"
           placeholder="Nombre"
           name="nombre"
+          value={nombre}
         />
       </FloatingLabel>
       <br></br>
@@ -83,10 +87,16 @@ const FormComponent = ({ listaInvitados, setListaDeInvitados }) => {
           type="email"
           placeholder="name@example.com"
           name="correo"
+          value={correo}
         />
       </FloatingLabel>
       <FloatingLabel controlId="floatingEdad" label="Edad" className="mb-3">
-        <Form.Control onChange={onChange} type="number" name="edad" />
+        <Form.Control
+          onChange={onChange}
+          type="number"
+          name="edad"
+          value={edad}
+        />
       </FloatingLabel>
 
       <Alert show={validacionEdad} variant="danger">
@@ -95,27 +105,33 @@ const FormComponent = ({ listaInvitados, setListaDeInvitados }) => {
       <Alert show={validacionSucces} variant="success">
         Registro completado
       </Alert>
-      <Button
-        variant="warning"
-        disabled={flag}
-        onClick={onChecked}
-        name="afirmativo"
-      >
-        voy
-      </Button>
-      <Button
-        variant="dark"
-        disabled={flag2}
-        onClick={onChecked2}
-        name="negativo"
-      >
-        No voy
-      </Button>
+
+      <div className="separar">
+        <Button
+          variant="warning"
+          disabled={flag}
+          onClick={onChecked}
+          name="afirmativo"
+        >
+          Voy
+        </Button>
+        <Button
+          variant="dark"
+          disabled={flag2}
+          onClick={onChecked2}
+          name="negativo"
+        >
+          No voy
+        </Button>
+      </div>
+
       <br></br>
       <br></br>
-      <Button variant="secondary" onClick={onSubmit}>
-        Confirmar
-      </Button>
+      <div className="centrar">
+        <Button variant="secondary" onClick={onSubmit}>
+          Confirmar
+        </Button>
+      </div>
     </PanelControl>
   );
 };

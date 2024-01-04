@@ -4,12 +4,13 @@ import { ListComponent } from "../list-component/ListComponent";
 import { useState } from "react";
 import FormComponent from "../form-component/FormComponent";
 import { InviteComponent } from "../invite-component/InviteComponents";
+import './TabComponent.css';
 
 const TabComponent = () => {
   const [listaInvitados, setListaDeInvitados] = useState([]);
   return (
     <div className="container">
-          <Tabs
+          <Tabs 
       defaultActiveKey="profile"
       id="uncontrolled-tab-example"
       className="mb-3"

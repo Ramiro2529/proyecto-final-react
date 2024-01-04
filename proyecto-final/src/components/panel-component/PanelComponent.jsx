@@ -8,7 +8,7 @@ const PanelControl = (props) => {
 
   return (
 
-    <Container>
+    <Container fluid>
       <Row>
         <Col>
         <CalabazaComponent></CalabazaComponent>

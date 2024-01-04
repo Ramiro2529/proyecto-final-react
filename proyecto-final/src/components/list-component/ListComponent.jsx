@@ -8,10 +8,10 @@ export const ListComponent = ({ listaInvitados }) => {
       <ListGroup>
         {listaInvitados.map((i) => (
           <ListGroup.Item
-            variant={i.asistencia == "Si va" ? "primary" : "danger"}
+            variant={i.asistencia == "Asistirá" ? "primary" : "danger"}
             key={Math.random()}
           >
-            {i.nombre}, {i.correo}, {i.asistencia}
+            {i.nombre}, {i.asistencia}
           </ListGroup.Item>
         ))}
       </ListGroup>
